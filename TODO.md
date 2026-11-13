@@ -28,7 +28,7 @@
 - [x] Keep private account records ownership-scoped; do not use real personal or medical information in test or demo data.
 
 ## 5. Written walkthrough, genuine interviews, and user-testing evidence
-- [ ] Provide a written walkthrough of no more than two pages, covering: who experiences the problem; what the problem is and why it matters; the solution and why it was chosen; evidence; and what would be built next. A concise applicant draft exists; genuine evidence, applicant identity, and release details remain to be supplied.
+- [ ] Provide a written walkthrough of no more than two pages, covering: who experiences the problem; what the problem is and why it matters; the solution and why it was chosen; evidence; and what would be built next. The applicant draft and verified two-page PDF export are included; genuine interview evidence, applicant identity, and some independent-test evidence remain to be supplied.
 - [ ] Complete at least three genuine interviews with people who experience or understand the problem. Explore how participants organise motherhood information, appointments, facility discovery, and delivery preparations. None has been completed.
 - [ ] Include anonymized interview records without participant names, phone numbers, identity numbers, or private medical information. Record date, method, participant category, consent, actual responses, problems, suggested improvements, and what MamaCare learned. Do not invent quotes, responses, themes, or findings. Blank interview templates are provided; no participant records or findings exist.
 - [ ] Summarize the actual number interviewed, common problem, recurring difficulties, existing solutions, requested features, and changes made after interviews. Keep every finding tied to genuine evidence. This summary is pending actual interviews.
@@ -37,17 +37,17 @@
 - [ ] Provide working test access for every role actually implemented, test each account before submission, and use fictional information only. Explain any sign-in constraints; do not list roles that are not implemented. The public fictional demo is available; persistent account use requires an individual Manus account, and no shared test credentials or separate healthcare-worker/administrator roles are provided.
 
 ## 6. Public release and private source repository
-- [ ] Publish the application at a working HTTPS URL. Verify it in a private/incognito browser; verify test accounts can log in, main implemented features work, mobile layout is usable, and no real personal or medical information is exposed.
-- [ ] Record the verified application URL, hosting provider, deployment date, application version, test-access instructions, and known limitations. The application must remain online during the selection process; maintaining it is the applicant's ongoing responsibility.
-- [ ] Push the source to the existing private GitHub repository and record the GitHub username and exact repository URL.
-- [ ] Include genuine development commits showing how the project progressed, with actual dates/commit references for initial setup, authentication and onboarding, pregnancy journey, healthcare finder, birth preparedness, testing/improvements, and deployment.
+- [ ] Publish the application at a working HTTPS URL. Verify it in a private/incognito browser; verify test accounts can log in, main implemented features work, mobile layout is usable, and no real personal or medical information is exposed. **Completed:** public HTTPS at https://mamacare-sjx5ckfz.manus.space; anonymous homepage, health endpoint, all 10 routes, and no-login demo/Postpartum toggle were checked with fictional data. Authenticated test accounts, account isolation, and full mobile flows remain untested.
+- [x] Record the verified application URL, hosting provider, deployment date, application version, test-access instructions, and known limitations. The application must remain online during the selection process; maintaining it is the applicant's ongoing responsibility. URL: https://mamacare-sjx5ckfz.manus.space; Manus WebDev; 2026-11-13; source checkpoint `d5748ec`; public demo instructions and limitations are in README/walkthrough. Applicant must keep the hosting project active.
+- [x] Push the source to the existing private GitHub repository and record the GitHub username and exact repository URL. Private `Lizeka25/mamacare-assignment`, https://github.com/Lizeka25/mamacare-assignment; updated main merge commit `92ae7af` verified.
+- [x] Include genuine development commits showing how the project progressed, with actual dates/commit references for initial setup, authentication and onboarding, pregnancy journey, healthcare finder, birth preparedness, testing/improvements, and deployment. The walkthrough maps dated commits `53e9766`, `c916873`, `55a6535`, `c61025c`, `611ec75`, `d5748ec`, and `92ae7af` to their actual milestones.
 - [x] Include setup instructions; exclude passwords, secret keys, and private user information. README lists required environment variable names only and warns against committing values.
 
 ## 7. Final submission checklist
-- [ ] Public live application link.
+- [x] Public live application link: https://mamacare-sjx5ckfz.manus.space.
 - [ ] Test access for every implemented role.
-- [ ] Private source-code repository.
-- [ ] Genuine development commit history.
+- [x] Private source-code repository: https://github.com/Lizeka25/mamacare-assignment.
+- [x] Genuine development commit history with dated commit references in `docs/walkthrough.md`.
 - [ ] Written walkthrough no more than two pages, with verified applicant and release details.
 - [ ] At least three genuine Route B interviews and actual interview findings.
 - [ ] Actual product-testing evidence and genuine tester feedback.

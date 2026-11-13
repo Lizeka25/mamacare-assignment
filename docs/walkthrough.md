@@ -1,42 +1,37 @@
 # MamaCare — assignment walkthrough
 
-> **Applicant draft — incomplete.** Complete the applicant and evidence fields only with verified information. The problem statement below comes from the assignment brief, not from completed interviews.
+> **Applicant draft — evidence incomplete.** The problem statement below comes from the assignment brief, not completed interviews.
 
 **Applicant:** [TO COMPLETE — name]<br>
-**Current research status:** No participant interviews or independent user tests have been completed.<br>
-**Public app URL / deployment date:** [TO COMPLETE after successful publication]
+**Research:** 0 genuine interviews; 0 independent user testers.<br>
+**Public app / release:** https://mamacare-sjx5ckfz.manus.space — 2026-11-13; checkpoint `d5748ec`.
 
 ## Who experiences the problem, and why it matters
 
-The assignment identifies expecting mothers, mothers with young children, and their supporters in South Africa as the intended users. Pregnancy and early-parenting information, appointment details, facility discovery, and birth-preparation planning can be spread across different sources. This is the problem MamaCare is designed to address; the extent and details of this need still require confirmation through genuine interviews.
+The assignment identifies expecting mothers, mothers with young children, and their supporters in South Africa as intended users. Pregnancy and early-parenting information, appointments, facility discovery, and birth preparation can be spread across different sources. MamaCare is designed to gather practical organization tools in one place; interviews are still needed to confirm how widespread the problem is and which needs matter most.
 
 ## Chosen solution
 
-MamaCare provides one mobile-first place to organize practical tasks from pregnancy into early childhood. The current app includes account onboarding and a public fictional demo; My Journey with an optional entered pregnancy week, a highlighted, week-aware **planning** timeline, and a birth-preparedness checklist; appointment reminders; province links to an independently maintained facility directory; a birth plan for preferred facility, emergency contact, and transport; an eight-step Postpartum Preparation organizer for support, meals, rest, supplies, follow-up transport, and important contacts; an essentials list with estimated costs in rand; child profiles with dated developmental/family milestone notes and a UNICEF South Africa child-development resource; and a Support Centre linking to public sources.
+MamaCare is a mobile-first workspace that includes onboarding; My Journey with an optional pregnancy week, week-aware **planning** prompts, appointments, and a birth checklist; a facility finder linking to an independent directory; a birth plan for a preferred facility, emergency contact, and transport; an eight-step Postpartum Preparation organizer for support, meals, rest, supplies, follow-up transport, and useful contacts; an essentials list with estimated costs in rand; child profiles and dated family/development notes; and a Support Centre with public sources. The public **Explore the demo** path uses fictional examples; changes remain in the browser session. Persistent records require Manus OAuth and are scoped to the signed-in account. Expecting mother, mother, and caregiver are profile choices within one access class; there is no shared password, healthcare-worker, or administrator test role.
 
-The timeline ranges are prompts for organization, not medical or developmental advice, clinical milestones, or a care schedule. The user’s own week entry only selects a planning window. Facility information is provided by external sources and should be confirmed with the relevant service.
+The first version prioritizes the brief's pregnancy-planning, appointment, healthcare-information, and birth-preparation goals, then adds practical postpartum, list, and child-profile tools. The ranking is provisional until participant evidence is collected. Timeline prompts are organizational only, not medical advice, clinical milestones, or a care schedule. Facility details may change and must be checked with the relevant service. MamaCare is not a healthcare provider or emergency service.
 
-Persistent records use Manus OAuth sign-in and are scoped to the signed-in account. The public **Explore the demo** path requires no login, uses clearly fictional samples, and does not save demo edits to the application database. The implemented profile choices are expecting mother, mother, and caregiver; they do not create different permission roles. No shared password test account or healthcare-worker/administrator role is available.
+## Evidence and next steps
 
-This approach was selected to combine the initial assignment priorities—pregnancy planning, appointments, healthcare information, and birth preparation—with useful list and child-profile tools. That choice is provisional: no interview evidence exists yet to validate or rank these needs.
+Developer checks on 2026-11-13 included TypeScript checking, six automated starter tests, a production build, public health/route-manifest responses, and anonymous browser access. In the fictional demo, the postpartum checklist showed 0/8, then 1/8 after one item was toggled; an Essentials item was also added and removed. These limited checks used no user account or application records and are not independent user testing. Authenticated saves, cross-account isolation, appointment saving, and full mobile workflows remain unverified.
 
-## Evidence and what should be built next
+Route B evidence is incomplete: **0 genuine interviews and 0 independent testers**. The evidence workbook contains blank interview templates and marks unrun scenarios. Complete at least three genuine, anonymized interviews; gather actual user feedback using fictional test information; summarize findings, improvements, and remaining issues. Do not invent responses or results.
 
-Developer checks completed for this version include TypeScript checking, six automated tests, a production build, HTTP health and route-manifest checks, and a limited fictional-demo smoke check that added and then removed a demo essentials item. The postpartum checklist column migration was verified in database metadata; its authenticated save flow was not exercised. Desktop and narrow landing-page Preview captures are in `docs/evidence/`. These checks are not independent user testing. Authenticated sign-in, end-to-end account isolation, the appointment-save flow, and the application’s main flows on a mobile device remain unverified.
+Next I would expand the healthcare directory, improve pregnancy and postnatal resources, add South African languages, and improve accessibility based on real feedback. Applicant next steps: [TO COMPLETE after interviews and user testing].
 
-Route B evidence is not complete: **0 genuine interviews and 0 independent testers**. The assignment evidence workbook in `docs/assignment-evidence.md` contains blank interview forms and a scenario log. Complete at least three genuine, anonymized interviews, record real tester feedback from fictional-data sessions, summarize what was learned, and revise priorities from that evidence. Do not replace these steps with the developer checks above or invent findings.
+## Release, access, and source history
 
-With more time, I would expand the healthcare directory, improve pregnancy and postnatal resources, add additional South African languages, and improve accessibility. I would continue testing with mothers and caregivers and use their actual feedback to choose changes. Applicant next steps: [TO COMPLETE after interviews and user testing].
+- **Public app:** https://mamacare-sjx5ckfz.manus.space (homepage, health endpoint, 10-route manifest, and demo checked 2026-11-13).
+- **Hosting and deployed source checkpoint:** Manus WebDev; `d5748ec` (2026-11-13).
+- **Test access:** Select **Explore the demo**; no account or password. Persistent records need an individual Manus OAuth account; no shared credentials are provided.
+- **Private GitHub source:** https://github.com/Lizeka25/mamacare-assignment (`Lizeka25`); private access/push verified, mirror merge `92ae7af`.
+- **Dated milestones (all 2026-11-13):** `53e9766` scaffold; `c916873` account-owned data; `55a6535` onboarding and initial planning workspace (journey, facility finder, birth plan, essentials, children, support); `c61025c` assignment documentation; `611ec75` postpartum organizer; `d5748ec` release/evidence update and published checkpoint; `92ae7af` GitHub history merge/push.
 
-## Access, release, and sources
+Setup steps are in `README.md`; sources are recorded in `docs/sources.md`. The Support Centre links to public health, child-development, facility-directory, and government emergency-number information; MamaCare is not affiliated with those organizations.
 
-- **Public HTTPS application:** [TO COMPLETE after publication; open in a fresh browser to verify]
-- **Hosting provider:** Manus WebDev
-- **Test access:** Use **Explore the demo** for public fictional-data access. Persistent records require an individual Manus account; no shared test password is provided. See the evidence workbook for the precise access limitation.
-- **Private GitHub repository:** https://github.com/Lizeka25/mamacare-assignment (`Lizeka25`); verify the repository is private after the source push.
-- **Deployment date and version/commit:** [TO COMPLETE with the published URL and actual version returned by the platform]
-- **Applicant setup instructions:** See `README.md`.
-
-The Support Centre links to WHO Africa maternal-health information, UNICEF South Africa child-development resources, South Africa's Department of Health, Clinic Finder SA, and Western Cape Government emergency-number guidance. These organizations maintain their own information. MamaCare is not affiliated with them and does not provide clinical care or emergency response.
-
-**Samsung access commitment:** If shortlisted, the applicant will be ready to grant Samsung full read access within 48 hours. [Confirm this statement before submission.]
+**Samsung access commitment:** If shortlisted, I will be ready to grant Samsung full read access within 48 hours. [Applicant: confirm this statement before submission.]
