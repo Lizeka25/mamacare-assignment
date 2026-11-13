@@ -13,6 +13,7 @@ const appRoutes = [
   "/appointments",
   "/facilities",
   "/birth-plan",
+  "/postpartum",
   "/essentials",
   "/children",
   "/support",

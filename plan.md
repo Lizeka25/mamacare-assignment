@@ -6,6 +6,8 @@ MamaCare is a mobile-first South African motherhood-planning web app for expecti
 
 The app will use the initialized React, Express, tRPC, Drizzle, and MySQL starter. Authentication will use the provided Manus OAuth flow because no other identity provider was specified. A protected profile and planning records will be keyed to the authenticated user ID on the server; every read and write will filter by that ID. The app will not include a healthcare-worker or administrator role. A public demo path uses fictional in-memory sample data; demo users can explore edits, but those changes never write to the shared database and reset when the browser session ends. A signed-in account can save private data. The browser interface will explain that Manus sign-in is needed for durable private saving.
 
+A dedicated Postpartum Preparation route will provide an eight-step practical organizer for trusted support, meals/household help, a rest area, supplies, follow-up transport, and important care contacts. Its checklist state will be stored on the same owner-scoped profile; demo changes remain session-only. It will offer organization prompts only, not diagnoses, treatment, medication, feeding instructions, or clinical recommendations.
+
 The database additions are additive: one profile/onboarding record with a saved six-step birth-preparedness checklist, appointments, essentials-list items, child profiles, and user-entered developmental/family milestone notes. Pregnancy week and due date are optional. My Journey presents broad, week-aware organization prompts, not clinical milestones or a recommended care schedule. Emergency contacts and transport plans are private to the owning account. Every child milestone is linked to a child that belongs to that same account. No clinical diagnoses, treatment guidance, or free-form medical notes are requested. Child Profiles and the Support Centre link to UNICEF South Africa's parent-facing child-development and milestone resources; MamaCare does not reproduce those claims or present an assessment. Facility discovery will hand off to Clinic Finder SA, an independently maintained public directory, rather than embedding unverified facilities. South African emergency contacts will be labeled as general information and linked to the Western Cape Government source. Maternal-health links will point to WHO Africa and South Africa's Department of Health.
 
 ## Project structure
@@ -13,9 +15,9 @@ The database additions are additive: one profile/onboarding record with a saved 
 - `client/src/App.tsx` registers stable page routes and the shared UI providers.
 - `client/src/components/MamaCareShell.tsx` owns desktop navigation, mobile navigation, account actions, and the safety note.
 - `client/src/pages/Home.tsx` handles the landing/demo/authenticated states, session-only demo, saved tRPC data, and route dispatch.
-- `client/src/components/WorkspaceViews.tsx` contains the dashboard, onboarding, journey, appointments, facility finder, birth plan, essentials, child, support, and landing views.
+- `client/src/components/WorkspaceViews.tsx` contains the dashboard, onboarding, journey, appointments, facility finder, birth plan, postpartum preparation, essentials, child, support, and landing views.
 - `client/src/lib/demoData.ts` contains clearly fictional, browser-only data for the public demo.
-- `drizzle/schema.ts`, `server/db.ts`, and `server/routers.ts` define the owner-scoped profile, checklist, appointments, essentials, child profiles and milestones, plus authenticated tRPC procedures.
+- `drizzle/schema.ts`, `server/db.ts`, and `server/routers.ts` define the owner-scoped profile, birth and postpartum checklists, appointments, essentials, child profiles and milestones, plus authenticated tRPC procedures.
 - `client/public/manus-routes.json` declares all page routes before Preview startup.
 - `docs/` contains a concise assignment walkthrough, interview and testing evidence templates, and source references; it will not claim unperformed interviews or tests.
 

@@ -14,6 +14,8 @@
 - [ ] Birth Preparedness records a preferred delivery facility, emergency contacts, and transport planning. Fields and owner-scoped procedures are implemented; persistent save/review remains unverified.
 - [x] Authenticated records are scoped to their owning account in the reviewed server procedures and database helpers; public demo changes remain fictional and session-only. Runtime cross-account isolation remains untested.
 - [x] Keep the initial release focused on pregnancy planning, appointments, healthcare information, and birth preparedness.
+- [x] Add a Postpartum Preparation area to organize support, meals/household help, rest, supplies, follow-up transport, and important care contacts. Keep it practical and non-clinical: no diagnoses, treatment, medication, feeding instructions, or individualized medical recommendations.
+- [x] Save each postpartum checklist step only to the signed-in account's profile; keep demo changes fictional and session-only, and expose no real personal or medical information. The protected owner-scoped mutation and additive profile column are implemented; signed-in persistence and demo toggle interactions remain untested end to end.
 
 ## 3. Healthcare finder and support centre
 - [x] Healthcare Finder helps users find clinics and hospitals and reach relevant facility information; disclose when facility details come from an independent directory and may need confirmation. The app links to verified Clinic Finder SA province and maternity pages and clearly identifies the directory as independent.

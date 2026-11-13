@@ -76,7 +76,7 @@ export async function getCareProfile(userId: number) {
   return result[0] ?? null;
 }
 
-export async function saveCareProfile(userId: number, input: Omit<CareProfile, "id" | "userId" | "createdAt" | "updatedAt" | "birthChecklist">) {
+export async function saveCareProfile(userId: number, input: Omit<CareProfile, "id" | "userId" | "createdAt" | "updatedAt" | "birthChecklist" | "postpartumChecklist">) {
   const db = requireDb(await getDb());
   await db.insert(careProfiles).values({ userId, ...input }).onDuplicateKeyUpdate({
     set: {
@@ -101,6 +101,16 @@ export async function setBirthChecklist(userId: number, step: number, completed:
   const birthChecklist = completed ? profile.birthChecklist | mask : profile.birthChecklist & ~mask;
   await db.update(careProfiles).set({ birthChecklist }).where(eq(careProfiles.userId, userId));
   return birthChecklist;
+}
+
+export async function setPostpartumChecklist(userId: number, step: number, completed: boolean) {
+  const db = requireDb(await getDb());
+  const profile = await getCareProfile(userId);
+  if (!profile) return null;
+  const mask = 1 << step;
+  const postpartumChecklist = completed ? profile.postpartumChecklist | mask : profile.postpartumChecklist & ~mask;
+  await db.update(careProfiles).set({ postpartumChecklist }).where(eq(careProfiles.userId, userId));
+  return postpartumChecklist;
 }
 
 export async function listAppointments(userId: number) {

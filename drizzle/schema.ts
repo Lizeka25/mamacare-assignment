@@ -34,6 +34,7 @@ export const careProfiles = mysqlTable("care_profiles", {
   emergencyContactPhone: varchar("emergencyContactPhone", { length: 40 }),
   transportPlan: text("transportPlan"),
   birthChecklist: int("birthChecklist").default(0).notNull(),
+  postpartumChecklist: int("postpartumChecklist").default(0).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });

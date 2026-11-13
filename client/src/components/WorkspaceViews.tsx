@@ -27,7 +27,7 @@ import type {
   ProfileData,
 } from "@/lib/demoData";
 
-export type ProfileInput = Omit<ProfileData, "birthChecklist">;
+export type ProfileInput = Omit<ProfileData, "birthChecklist" | "postpartumChecklist">;
 export type AppointmentInput = { title: string; appointmentDate: string; facility?: string };
 export type EssentialInput = { label: string; category: string; estimatedCost: number };
 export type ChildInput = { name: string; birthDate?: string };
@@ -52,6 +52,17 @@ const planningSteps = [
   "Keep important documents together",
   "Build an essentials list that fits your budget",
   "Share the plan with someone who may support you",
+];
+
+const postpartumSteps = [
+  "Choose trusted people who could check in or help in the way you prefer",
+  "Arrange a few easy meals or grocery support",
+  "Set up a comfortable place to rest with useful items nearby",
+  "Make a short list of household and baby supplies to have ready",
+  "Note a transport idea for follow-up appointments",
+  "Keep care-team, support, and emergency contacts easy to find",
+  "Agree who could help with routine household tasks",
+  "Think about how you would ask for a break or hands-on support",
 ];
 
 function money(amount: number) {
@@ -334,6 +345,7 @@ export function DashboardView({
           <button className="resource-row" onClick={() => onNavigate("/facilities")}><span className="resource-icon"><MapPin size={18} /></span><span><strong>Find a nearby clinic</strong><small>Browse a public directory by province</small></span><ArrowRight size={16} /></button>
           <button className="resource-row" onClick={() => onNavigate("/birth-plan")}><span className="resource-icon resource-icon-clay"><Truck size={18} /></span><span><strong>Think through transport</strong><small>Save a plan and a trusted contact</small></span><ArrowRight size={16} /></button>
           <button className="resource-row" onClick={() => onNavigate("/children")}><span className="resource-icon resource-icon-gold"><Baby size={18} /></span><span><strong>Keep family moments</strong><small>Add a child profile and memories</small></span><ArrowRight size={16} /></button>
+          <button className="resource-row" onClick={() => onNavigate("/postpartum")}><span className="resource-icon resource-icon-clay"><Heart size={18} /></span><span><strong>Plan for after birth</strong><small>Organize rest, practical help, and support</small></span><ArrowRight size={16} /></button>
         </Panel>
       </div>
       <div className="dashboard-footnote"><ShieldCheck size={15} /><span>{isDemo ? "Fictional demo data only — your changes are not saved." : "Your details are private to your account. Only save what is useful to you."}</span></div>
@@ -390,6 +402,7 @@ export function JourneyView({
             })}
           </div>
           <button className="button button-outline button-small" onClick={() => onNavigate("/birth-plan")}>Open your birth plan <ArrowRight size={15} /></button>
+          <button className="button button-outline button-small" onClick={() => onNavigate("/postpartum")}>Plan for after birth <ArrowRight size={15} /></button>
         </Panel>
         <Panel className="timeline-panel">
           <SectionTitle title={profile.role === "expecting" ? "Pregnancy planning timeline" : "Planning moments"} />
@@ -513,6 +526,50 @@ export function BirthPlanView({ profile, onSave }: { profile: ProfileData; onSav
           <Panel className="emergency-panel"><div className="emergency-mark"><Heart size={20} /></div><div className="eyebrow">SOUTH AFRICA · EMERGENCY INFORMATION</div><h2>Know who to call.</h2><p>Western Cape Government lists these numbers for emergencies. Check local arrangements where you live.</p><a href="tel:10177" className="emergency-number"><span>Ambulance</span><strong>10177</strong><ArrowRight size={15} /></a><a href="tel:112" className="emergency-number"><span>Cellphone emergency</span><strong>112</strong><ArrowRight size={15} /></a><a className="source-link" href="https://www.westerncape.gov.za/know-who-you-can-call-emergency" target="_blank" rel="noreferrer">See government source <ExternalLink size={13} /></a></Panel>
           <div className="private-note"><ShieldCheck size={17} /><span>Your contact and transport details are saved privately to your account.</span></div>
         </div>
+      </div>
+    </>
+  );
+}
+
+export function PostpartumView({
+  profile,
+  onToggleChecklist,
+  onNavigate,
+}: {
+  profile: ProfileData;
+  onToggleChecklist: (step: number, completed: boolean) => void;
+  onNavigate: (href: string) => void;
+}) {
+  const doneCount = postpartumSteps.filter((_, index) => Boolean(profile.postpartumChecklist & (1 << index))).length;
+  return (
+    <>
+      <PageTitle eyebrow="POSTPARTUM PREPARATION" title="Make a little room for after." description="A practical plan for support, meals, rest, supplies, and important details. Keep what helps; skip what doesn't." />
+      <div className="journey-columns">
+        <Panel className="checklist-panel">
+          <SectionTitle title="Your postpartum plan" extra={<span className="count-chip">{doneCount}/{postpartumSteps.length} ready</span>} />
+          <p className="panel-intro">Small practical arrangements can be adjusted to fit your household and the help you want.</p>
+          <div className="checklist-items">
+            {postpartumSteps.map((text, index) => {
+              const checked = Boolean(profile.postpartumChecklist & (1 << index));
+              return <label className={`checklist-item ${checked ? "checked" : ""}`} key={text}>
+                <input type="checkbox" checked={checked} onChange={event => onToggleChecklist(index, event.target.checked)} />
+                <span className="check-custom">{checked && <Check size={13} />}</span>
+                <span>{text}</span>
+              </label>;
+            })}
+          </div>
+          <button className="button button-outline button-small" onClick={() => onNavigate("/birth-plan")}>Review your birth plan <ArrowRight size={15} /></button>
+        </Panel>
+        <Panel className="timeline-panel">
+          <SectionTitle title="A plan that fits your people" />
+          <div className="planning-timeline">
+            <article className="timeline-moment"><div className="timeline-marker"><span /></div><div><span className="moment-tag">Support</span><h3>Be specific about the help you want</h3><p>Think about who might check in, bring a meal, or help with everyday tasks.</p></div></article>
+            <article className="timeline-moment"><div className="timeline-marker"><span /></div><div><span className="moment-tag">Practical details</span><h3>Keep useful things within reach</h3><p>Gather supplies and contacts that make sense for your home and routine.</p></div></article>
+            <article className="timeline-moment"><div className="timeline-marker"><span /></div><div><span className="moment-tag">Follow-up</span><h3>Plan how you could get there</h3><p>Note a transport idea for appointments and a trusted person to contact if plans change.</p></div></article>
+          </div>
+          <p className="timeline-note">Every family is different. This checklist is for organization only, not medical guidance. Ask a healthcare professional about personal care questions or concerns.</p>
+          <button className="button button-outline button-small" onClick={() => onNavigate("/support")}>Browse trusted support resources <ArrowRight size={15} /></button>
+        </Panel>
       </div>
     </>
   );
