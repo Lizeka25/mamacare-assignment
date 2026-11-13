@@ -1,0 +1,1 @@
+ALTER TABLE `care_profiles` ADD `postpartumChecklist` int DEFAULT 0 NOT NULL;

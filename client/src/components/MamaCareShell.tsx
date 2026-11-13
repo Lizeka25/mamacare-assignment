@@ -20,6 +20,7 @@ const navItems = [
   { href: "/appointments", label: "Appointments", icon: CalendarDays },
   { href: "/facilities", label: "Find care", icon: MapPin },
   { href: "/birth-plan", label: "Birth plan", icon: Heart },
+  { href: "/postpartum", label: "Postpartum prep", icon: Heart },
   { href: "/essentials", label: "Essentials", icon: ListChecks },
   { href: "/children", label: "Children", icon: Baby },
   { href: "/support", label: "Support", icon: Sparkles },

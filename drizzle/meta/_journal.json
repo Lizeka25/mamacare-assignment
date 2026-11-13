@@ -15,6 +15,13 @@
       "when": 1794567647865,
       "tag": "0001_sudden_zeigeist",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1794570778954,
+      "tag": "0002_zippy_grey_gargoyle",
+      "breakpoints": true
     }
   ]
 }

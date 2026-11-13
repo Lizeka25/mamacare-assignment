@@ -41,6 +41,13 @@ export const appRouter = router({
           if (result === null) throw new TRPCError({ code: "NOT_FOUND", message: "Care profile not found" });
           return { birthChecklist: result };
         }),
+      setPostpartumChecklistStep: protectedProcedure
+        .input(z.object({ step: z.number().int().min(0).max(7), completed: z.boolean() }))
+        .mutation(async ({ ctx, input }) => {
+          const result = await db.setPostpartumChecklist(ctx.user.id, input.step, input.completed);
+          if (result === null) throw new TRPCError({ code: "NOT_FOUND", message: "Care profile not found" });
+          return { postpartumChecklist: result };
+        }),
     }),
     appointments: router({
       list: protectedProcedure.query(({ ctx }) => db.listAppointments(ctx.user.id)),

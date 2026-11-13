@@ -13,6 +13,7 @@ import {
   JourneyView,
   LandingView,
   OnboardingView,
+  PostpartumView,
   SupportView,
   type AppointmentInput,
   type ChildInput,
@@ -43,6 +44,7 @@ const pageTitles: Record<string, string> = {
   "/appointments": "Appointments",
   "/facilities": "Healthcare Finder",
   "/birth-plan": "Birth Preparedness",
+  "/postpartum": "Postpartum Preparation",
   "/essentials": "Essentials Planner",
   "/children": "Child Profiles",
   "/support": "Support Centre",
@@ -90,6 +92,10 @@ export default function Home() {
   const checklistMutation = trpc.care.profile.setChecklistStep.useMutation({
     onSuccess: () => utils.care.profile.get.invalidate(),
     onError: error => toast.error(error.message || "Could not update your checklist."),
+  });
+  const postpartumChecklistMutation = trpc.care.profile.setPostpartumChecklistStep.useMutation({
+    onSuccess: () => utils.care.profile.get.invalidate(),
+    onError: error => toast.error(error.message || "Could not update your postpartum checklist."),
   });
   const appointmentCreate = trpc.care.appointments.create.useMutation({
     onSuccess: async () => { await utils.care.appointments.list.invalidate(); toast.success("Appointment added."); },
@@ -153,7 +159,7 @@ export default function Home() {
 
   const profile: ProfileData = isDemo
     ? demoProfile
-    : (profileQuery.data as ProfileData | null | undefined) ?? { ...DEMO_PROFILE, pregnancyWeek: null, dueDate: null, birthChecklist: 0 };
+    : (profileQuery.data as ProfileData | null | undefined) ?? { ...DEMO_PROFILE, pregnancyWeek: null, dueDate: null, birthChecklist: 0, postpartumChecklist: 0 };
   const appointments: AppointmentData[] = isDemo ? demoAppointments : (appointmentQuery.data as AppointmentData[] | undefined) ?? [];
   const essentials: EssentialData[] = isDemo ? demoEssentials : (essentialQuery.data as EssentialData[] | undefined) ?? [];
   const children: ChildData[] = isDemo ? demoChildren : (childQuery.data as ChildData[] | undefined) ?? [];
@@ -174,6 +180,13 @@ export default function Home() {
       return;
     }
     checklistMutation.mutate({ step, completed });
+  };
+  const togglePostpartumChecklist = (step: number, completed: boolean) => {
+    if (isDemo) {
+      setDemoProfile(current => ({ ...current, postpartumChecklist: completed ? current.postpartumChecklist | (1 << step) : current.postpartumChecklist & ~(1 << step) }));
+      return;
+    }
+    postpartumChecklistMutation.mutate({ step, completed });
   };
   const addAppointment = (input: AppointmentInput) => {
     if (isDemo) {
@@ -266,6 +279,9 @@ export default function Home() {
       break;
     case "/birth-plan":
       content = <BirthPlanView profile={profile} onSave={saveProfile} />;
+      break;
+    case "/postpartum":
+      content = <PostpartumView profile={profile} onToggleChecklist={togglePostpartumChecklist} onNavigate={navigate} />;
       break;
     case "/essentials":
       content = <EssentialsView essentials={essentials} onAdd={addEssential} onToggle={toggleEssential} onDelete={deleteEssential} />;

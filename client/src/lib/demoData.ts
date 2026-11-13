@@ -10,6 +10,7 @@ export type ProfileData = {
   emergencyContactPhone: string | null;
   transportPlan: string | null;
   birthChecklist: number;
+  postpartumChecklist: number;
 };
 
 export type AppointmentData = {
@@ -52,6 +53,7 @@ export const DEMO_PROFILE: ProfileData = {
   emergencyContactPhone: null,
   transportPlan: "Discuss a route with a trusted support person.",
   birthChecklist: 1,
+  postpartumChecklist: 0,
 };
 
 export const DEMO_APPOINTMENTS: AppointmentData[] = [
