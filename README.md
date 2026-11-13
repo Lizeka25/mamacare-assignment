@@ -10,6 +10,7 @@ MamaCare is a mobile-first planning workspace for expecting mothers, mothers wit
 - Appointment scheduling and completion tracking.
 - Province links to the independent Clinic Finder SA directory; listings and service availability may change.
 - Birth-plan fields for a preferred facility, emergency contact, and transport idea.
+- Postpartum Preparation adds an account-owned eight-step organizer for support, meals, rest, supplies, follow-up transport, and important contacts. It is organizational support only, not medical guidance; demo progress remains session-only.
 - Essentials list with estimated costs in rand (not a price quote).
 - Child profiles and dated notes for general developmental milestones or family moments, with an external UNICEF South Africa child-development resource.
 - Support links to WHO Africa, UNICEF South Africa, South Africa's Department of Health, Clinic Finder SA, and a government emergency-number reference.
